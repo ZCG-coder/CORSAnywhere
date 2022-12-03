@@ -1,7 +1,7 @@
 // Listen on a specific host via the HOST environment variable
-var host = process.env.HOST || '0.0.0.0';
+var host = process.env.HOST || 'localhost';
 // Listen on a specific port via the PORT environment variable
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8000;
 
 // Grab the blacklist from the command-line so that we can update the blacklist without deploying
 // again. CORS Anywhere is open by design, and this blacklist is not used, except for countering
@@ -35,9 +35,9 @@ cors_proxy.createServer({
     'connect-time',
     'total-route-time',
     // Other Heroku added debug headers
-    // 'x-forwarded-for',
-    // 'x-forwarded-proto',
-    // 'x-forwarded-port',
+    'x-forwarded-for',
+    'x-forwarded-proto',
+    'x-forwarded-port',
   ],
   redirectSameOrigin: true,
   httpProxyOptions: {
